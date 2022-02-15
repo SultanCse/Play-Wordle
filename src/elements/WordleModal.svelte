@@ -64,4 +64,12 @@
   .start-25 {
     left: 25%;
   }
+
+  
+  @media (max-width: 1000px) {
+    .w-50 {
+      width: 80% !important;
+      left: 10% !important;
+    }
+  }
 </style>

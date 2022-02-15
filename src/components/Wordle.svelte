@@ -1,6 +1,7 @@
 <script>
 	import {possibilities} from '../store/WordleWords.js';
   import WordleModal from '../elements/WordleModal.svelte';
+  
   let openModal = false;
   let title = '';
   let subtitle = '';
@@ -85,7 +86,7 @@
       keyColorPerRow();   
     if(word.includes(rightWord)){
       openModal = true;
-      title = 'Well Done';
+      title = 'Congratulations';
       subtitle = 'You have guessed the word successfully';
     }
     if(!word.includes(rightWord) && word.length == 30){
@@ -160,7 +161,8 @@
       }
     }
   }
-  
+
+
 
 </script>
 
@@ -168,6 +170,7 @@
 <div
   class="position-relative w-100 h-100 border fw-bolder"
   style="background: #111111;"
+  id="mydiv"
 >
   <div class="w-25 mt-2 position-absolute left-50">
     <div class="row mb-1 row-cols-5 gx-2">
@@ -274,9 +277,12 @@
       bind:openModal
       bind:title
       bind:subtitle
-      titleColor={title == 'Well Done' ? 'text-success' : 'text-danger'}
+      titleColor={title == 'Congratulations' ? 'text-success' : 'text-danger'}
     >
       {#if title == 'Failed'}
+        <p class="text-success">“{rightWord}”</p>
+        <p class="text-success fw-normal">is the rightWord</p>
+      {:else if title == 'Congratulations'}
         <p class="text-success">“{rightWord}”</p>
         <p class="text-success fw-normal">is the rightWord</p>
       {/if}
@@ -315,13 +321,14 @@
     .w-25 {
       width: 60% !important;
     }
+    .w-50 {
+      width: 96% !important;
+    }
   }
-  @media (max-width: 300px) {
+  @media (max-width: 450px) {
     .w-25 {
       width: 80% !important;
     }
-    .left-50 {
-      left: 1%;
-    }
+    
   }
 </style>
