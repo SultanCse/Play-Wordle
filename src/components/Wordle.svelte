@@ -16,6 +16,18 @@
                    ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'reset',]]; 
 
   let nextCount = 5;
+  const reset = () => {
+      word = '';
+      nextCount = 5;
+      colors = [];
+      keyColors = [];
+      firstRowColors = [];
+      secondRowColors = [];
+      thirdRowColors = [];
+      index = Math.floor(Math.random() * possibilities.length);
+      rightWord = possibilities[index].toUpperCase();
+      console.log(rightWord);
+  }
   const keyboardHandeler = (event)=>{
     if(word.length<nextCount && word.length<30 && event.keyCode>=65 && event.keyCode<=90 && !word.includes(rightWord)){
       word = word + event.key.toUpperCase()
@@ -118,7 +130,6 @@
     rowColorFilter(thirdRowColors);
     console.log('firstRowColors:', firstRowColors, 'secondRowColors:', secondRowColors, 'thirdRowColors:', thirdRowColors);
   }
-
   const rowColorFilter = (row) => {
     for(let i =0; i<row.length; i++){
       if(row[i].color == ' #B4A037'){
@@ -292,9 +303,9 @@
 
 <style>
   :root {
-    --positionWrong: #b4a037;
+    --positionWrong: #dfc235;
     --positionCorrect: #538d4c;
-    --notIncluded: #3a3a3c;
+    --notIncluded: #616163;
   }
   .h-2 {
     height: 2.4rem;
