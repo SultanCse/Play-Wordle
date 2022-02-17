@@ -144,6 +144,13 @@
     subtitle="Chaneg the theme";
   }
 
+  const gameRules = ()=>{
+    openModal = true;
+    modalName = "rules";
+    title="Rules";
+    subtitle="Rules of the game";
+  }
+
 
 </script>
 
@@ -158,7 +165,10 @@
   <div class="middle d-flex justify-content-center">
     <div>
       <div class="d-flex ">
-        <i class="fa-solid fa-circle-question text-white pe-5 pt-3" />
+        <i
+          class="fa-solid fa-circle-question text-white pe-5 pt-3"
+          on:click={() => gameRules()}
+        />
         <span class="fw-bold text-white fs-3">WORDLE</span>
         <i
           class="fa-solid fa-gear text-white ps-5 pt-3"
@@ -297,6 +307,9 @@
         bind:checkedValue={lightTheme}
       />
     </WordleModal>
+  {/if}
+  {#if openModal && modalName == 'rules'}
+    <WordleModal bind:openModal bind:title bind:subtitle bind:modalName />
   {/if}
 </div>
 
