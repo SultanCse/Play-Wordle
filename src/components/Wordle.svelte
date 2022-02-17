@@ -136,8 +136,6 @@
     }
   }
 
-
-
 </script>
 
 <svelte:window on:keydown={event => keyboardHandeler(event)} />
@@ -149,10 +147,9 @@
   <div class="d-flex justify-content-between">
     <div class="start" />
     <div class="middle d-flex justify-content-between">
-      <i class="fa-solid fa-circle-question" />
+      <i class="fa-solid fa-circle-question px-5 pt-1" />
       <span style="color:white">WORDLE</span>
-      <i class="fa-solid fa-gear" />
-      <hr />
+      <i class="fa-solid fa-gear px-5 pt-1" />
     </div>
     <div class="end"><Toggle width="30px" /></div>
   </div>
