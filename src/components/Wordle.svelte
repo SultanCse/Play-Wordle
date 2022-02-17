@@ -1,7 +1,7 @@
 <script>
-	import {possibilities} from '../store/WordleWords.js';
+	import {possibilities,charSet,falseArray} from '../store/WordleWords.js';
   import WordleModal from '../elements/WordleModal.svelte';
-  
+  import {rowColorFilter} from './services.js';
   let openModal = false;
   let title = '';
   let subtitle = '';
@@ -10,11 +10,6 @@
   let keyColors = [];
   let rightWord = possibilities[index].toUpperCase();
   console.log(rightWord);
-  const falseArray = ['A', 'B', 'C', 'D', 'E', 'F'];
-  const charSet = [['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-                   ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-                   ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'reset',]]; 
-
   let nextCount = 5;
   const reset = () => {
       word = '';
@@ -122,48 +117,13 @@
       }else if(charSet[1].includes(keyColors[i].char)){
         secondRowColors.push({char: keyColors[i].char, color: keyColors[i].color})
       }else{
-         thirdRowColors.push({char: keyColors[i].char, color: keyColors[i].color})
+        thirdRowColors.push({char: keyColors[i].char, color: keyColors[i].color})
       }
     }
     rowColorFilter(firstRowColors);
     rowColorFilter(secondRowColors);
     rowColorFilter(thirdRowColors);
     console.log('firstRowColors:', firstRowColors, 'secondRowColors:', secondRowColors, 'thirdRowColors:', thirdRowColors);
-  }
-  const rowColorFilter = (row) => {
-    for(let i =0; i<row.length; i++){
-      if(row[i].color == ' #B4A037'){
-        for(let j =i+1; j<row.length; j++){
-          if(row[i].char == row[j].char && row[j].color=='#538D4C'){
-            row.splice(i,1);
-            j--;
-          }else if(row[i].char == row[j].char && row[j].color==' #B4A037'){
-            row.splice(j,1);
-            j--;
-          }
-        }
-      } 
-      else if(row[i].color == '#538D4C'){
-        for(let j =i+1; j<row.length; j++){
-          if(row[i].char == row[j].char && row[j].color==' #B4A037'){
-            row.splice(j,1);
-            j--;
-          }else if(row[i].char == row[j].char && row[j].color=='#538D4C'){
-            row.splice(i,1);
-            j--;
-          }
-        }
-      } 
-      else if(row[i].color == '#3A3A3C'){
-        for(let j =i+1; j<row.length; j++){
-          if(row[i].char == row[j].char && row[j].color=='#3A3A3C'){
-            row.splice(i,1);
-            j--;
-          }
-        }
-      }
-
-    }
   }
   const colorReturn = (item,row)=>{
     for(let i =0; i<row.length; i++){
