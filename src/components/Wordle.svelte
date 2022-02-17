@@ -1,7 +1,10 @@
 <script>
+	import Wordle from './Wordle.svelte';
 	import {possibilities,charSet,falseArray} from '../store/WordleWords.js';
   import WordleModal from '../elements/WordleModal.svelte';
   import {rowColorFilter} from './services.js';
+  import Toggle from '../elements/Toggle.svelte';
+  
   let openModal = false;
   let title = '';
   let subtitle = '';
@@ -140,9 +143,20 @@
 <svelte:window on:keydown={event => keyboardHandeler(event)} />
 <div
   class="position-relative w-100 h-100 border fw-bolder"
-  style="background: #111111;"
+  style="background: var(--dark-BackGround);"
   id="mydiv"
 >
+  <div class="d-flex justify-content-between">
+    <div class="start" />
+    <div class="middle d-flex justify-content-between">
+      <i class="fa-solid fa-circle-question" />
+      <span style="color:white">WORDLE</span>
+      <i class="fa-solid fa-gear" />
+      <hr />
+    </div>
+    <div class="end"><Toggle width="30px" /></div>
+  </div>
+
   <div class="w-25 mt-2 position-absolute left-50">
     <div class="row mb-1 row-cols-5 gx-2">
       {#each word as item, i}
@@ -266,6 +280,7 @@
     --positionWrong: #dfc235;
     --positionCorrect: #538d4c;
     --notIncluded: #616163;
+    --dark-BackGround: #111111;
   }
   .h-2 {
     height: 2.4rem;
@@ -300,6 +315,5 @@
     .w-25 {
       width: 80% !important;
     }
-    
   }
 </style>
