@@ -4,6 +4,7 @@
   export let subtitle="Subtitle"; 
   export let titleColor=""; //bootstrap color
   export let subtitleColor=""; //bootstrap color
+  export let modalName="";
   // export let buttonText="Submit";
   export let className="bg-gray";
   export let openModal = false;
@@ -21,6 +22,9 @@
   on:click|self={() => {
     display = false;
     openModal = false;
+    title = '';
+    subtitle = '';
+    modalName = '';
   }}
 >
   <div
@@ -42,7 +46,11 @@
         class="btn btn-secondary"
         type=""
         on:click={() => {
-          (display = false), (openModal = false);
+          display = false;
+          openModal = false;
+          title = '';
+          subtitle = '';
+          modalName = '';
         }}
       >
         Cancel
@@ -65,7 +73,6 @@
     left: 25%;
   }
 
-  
   @media (max-width: 1000px) {
     .w-50 {
       width: 80% !important;

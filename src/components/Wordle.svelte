@@ -1,9 +1,9 @@
 <script>
+	import Toggle from './../elements/Toggle.svelte';
+	import WordleModal from './../elements/WordleModal.svelte';
 	import Wordle from './Wordle.svelte';
 	import {possibilities,charSet,falseArray} from '../store/WordleWords.js';
-  import WordleModal from '../elements/WordleModal.svelte';
   import {rowColorFilter} from './services.js';
-  import Toggle from '../elements/Toggle.svelte';
   
   let openModal = false;
   let title = '';
@@ -14,6 +14,8 @@
   let rightWord = possibilities[index].toUpperCase();
   console.log(rightWord);
   let nextCount = 5;
+  let lightTheme = false;
+  let modalName = "";
   const reset = () => {
       word = '';
       nextCount = 5;
@@ -135,23 +137,37 @@
       }
     }
   }
+  const themeToggle = ()=>{
+    openModal = true;
+    modalName = "settings";
+    title="Settings";
+    subtitle="Chaneg the theme";
+  }
+
 
 </script>
 
 <svelte:window on:keydown={event => keyboardHandeler(event)} />
 <div
   class="position-relative w-100 h-100 border fw-bolder"
-  style="background: var(--dark-BackGround);"
+  style="background: {lightTheme
+    ? 'var(--light-BackGround)'
+    : 'var(--dark-BackGround)'};"
   id="mydiv"
 >
-  <div class="d-flex justify-content-between">
-    <div class="start" />
-    <div class="middle d-flex justify-content-between">
-      <i class="fa-solid fa-circle-question px-5 pt-1" />
-      <span style="color:white">WORDLE</span>
-      <i class="fa-solid fa-gear px-5 pt-1" />
+  <div class="middle d-flex justify-content-center">
+    <div>
+      <div class="d-flex ">
+        <i class="fa-solid fa-circle-question text-white pe-5 pt-3" />
+        <span class="fw-bold text-white fs-3">WORDLE</span>
+        <i
+          class="fa-solid fa-gear text-white ps-5 pt-3"
+          on:click={() => themeToggle()}
+        />
+        <!-- <div class="end"><Toggle width="30px" className="ps-5 pt-3" /></div> -->
+      </div>
+      <hr class="p-0 m-0 bg-white h-10 position-relative bottom-1 mx-2" />
     </div>
-    <div class="end"><Toggle width="30px" /></div>
   </div>
 
   <div class="w-25 mt-2 position-absolute left-50">
@@ -270,6 +286,18 @@
       {/if}
     </WordleModal>
   {/if}
+  {#if openModal && modalName == 'settings'}
+    <WordleModal bind:openModal bind:title bind:subtitle bind:modalName>
+      <Toggle
+        width="5rem"
+        offColor="black"
+        onColor="#78a6ea"
+        switchColor="white"
+        swithBorderColor="red"
+        bind:checkedValue={lightTheme}
+      />
+    </WordleModal>
+  {/if}
 </div>
 
 <style>
@@ -278,6 +306,7 @@
     --positionCorrect: #538d4c;
     --notIncluded: #616163;
     --dark-BackGround: #111111;
+    --light-BackGround: #78a6ea;
   }
   .h-2 {
     height: 2.4rem;
@@ -290,6 +319,9 @@
   }
   .bottom-0 {
     bottom: 0;
+  }
+  .bottom-1 {
+    bottom: 3px;
   }
   .c-p {
     cursor: pointer;
