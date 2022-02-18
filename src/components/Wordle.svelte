@@ -2,7 +2,6 @@
 	import Rules from './Rules.svelte';
 	import Toggle from './../elements/Toggle.svelte';
 	import WordleModal from './../elements/WordleModal.svelte';
-	import Wordle from './Wordle.svelte';
 	import {possibilities,charSet,falseArray} from '../store/WordleWords.js';
   import {rowColorFilter} from './services.js';
   
@@ -162,24 +161,25 @@
   class="position-relative w-100 h-100 border fw-bolder"
   style="background: {lightTheme
     ? 'var(--light-BackGround)'
-    : 'var(--dark-BackGround)'};"
-  id="mydiv"
+    : 'var(--dark-BackGround)'};
+    color: {lightTheme ? 'var(--light-text)' : 'var(--dark-text)'};"
 >
   <div class="middle d-flex justify-content-center">
     <div>
       <div class="d-flex ">
         <i
-          class="fa-solid fa-circle-question text-white pe-5 pt-3"
+          class="fa-solid fa-circle-question pe-5 pt-3"
           on:click={() => gameRules()}
         />
-        <span class="fw-bold text-white fs-3">WORDLE</span>
-        <i
-          class="fa-solid fa-gear text-white ps-5 pt-3"
-          on:click={() => themeToggle()}
-        />
+        <span class="fw-bold fs-3">WORDLE</span>
+        <i class="fa-solid fa-gear ps-5 pt-3" on:click={() => themeToggle()} />
         <!-- <div class="end"><Toggle width="30px" className="ps-5 pt-3" /></div> -->
       </div>
-      <hr class="p-0 m-0 bg-white h-10 position-relative bottom-1 mx-2" />
+      <hr
+        class="p-0 m-0 {lightTheme
+          ? 'bg-black'
+          : 'bg-white'} h-10 position-relative bottom-1 mx-2"
+      />
     </div>
   </div>
 
@@ -289,6 +289,7 @@
       bind:title
       bind:subtitle
       titleColor={title == 'Congratulations' ? 'text-success' : 'text-danger'}
+      backgroundColor={lightTheme ? 'bg-info' : 'bg-black'}
     >
       {#if title == 'Failed'}
         <p class="text-success">“{rightWord}”</p>
@@ -300,11 +301,17 @@
     </WordleModal>
   {/if}
   {#if openModal && modalName == 'settings'}
-    <WordleModal bind:openModal bind:title bind:subtitle bind:modalName>
+    <WordleModal
+      bind:openModal
+      bind:title
+      bind:subtitle
+      bind:modalName
+      backgroundColor={lightTheme ? 'bg-info' : 'bg-black'}
+    >
       <Toggle
         width="5rem"
-        offColor="black"
-        onColor="#78a6ea"
+        offColor="white"
+        onColor="black"
         switchColor="white"
         swithBorderColor="red"
         bind:checkedValue={lightTheme}
@@ -312,7 +319,13 @@
     </WordleModal>
   {/if}
   {#if openModal && modalName == 'rules'}
-    <WordleModal bind:openModal bind:title bind:subtitle bind:modalName>
+    <WordleModal
+      bind:openModal
+      bind:title
+      bind:subtitle
+      bind:modalName
+      backgroundColor={lightTheme ? 'bg-info' : 'bg-black'}
+    >
       <Rules />
     </WordleModal>
   {/if}
@@ -323,17 +336,20 @@
     --positionWrong: #dfc235;
     --positionCorrect: #538d4c;
     --notIncluded: #616163;
+
     --dark-BackGround: #111111;
+    --dark-text: white;
+    --dark-border: white;
     --dark-keypad: #2d2d2d;
+
+    --light-BackGround: #ffffff;
+    --light-text: black;
+    --light-border: black;
     --light-keypad: #f5f5f5;
-    --dark-border: #;
-    --light-border: #;
-    --light-BackGround: #78a6ea;
   }
   .h-2 {
     height: 2.4rem;
     font-size: 1.4rem;
-    color: white;
   }
   .left-50 {
     left: 50%;
@@ -352,6 +368,9 @@
     font-size: 1.5rem;
     padding-top: 0.5rem;
     color: crimson;
+  }
+  .border {
+    border: 1px solid #6e6d6d !important;
   }
 
   @media (max-width: 1000px) {

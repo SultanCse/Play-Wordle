@@ -5,7 +5,7 @@
   export let titleColor=""; //bootstrap color
   export let subtitleColor=""; //bootstrap color
   export let buttonColor= "btn-secondary"; //bootstrap color
-  export let backgroundColor="bg-white"; //bootstrap color
+  export let backgroundColor="bg-black text-white"; //bootstrap color
   export let modalName="";
   // export let buttonText="Submit";
   export let className="bg-gray";
@@ -63,7 +63,7 @@
 
 <style>
   .body {
-    backdrop-filter: blur(0.2rem);
+    backdrop-filter: blur(0.3rem);
   }
 
   .top-15 {
