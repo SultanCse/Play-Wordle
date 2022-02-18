@@ -4,6 +4,8 @@
   export let subtitle="Subtitle"; 
   export let titleColor=""; //bootstrap color
   export let subtitleColor=""; //bootstrap color
+  export let buttonColor= "btn-secondary"; //bootstrap color
+  export let backgroundColor="bg-white"; //bootstrap color
   export let modalName="";
   // export let buttonText="Submit";
   export let className="bg-gray";
@@ -28,7 +30,7 @@
   }}
 >
   <div
-    class="w-50 shadow-sm bg-white border rounded position-absolute start-25 top-20 "
+    class="w-50 {backgroundColor} rounded position-absolute start-25 top-20 "
   >
     <!-- Modal header -->
     <p class="text-center fs-1 m-0 fw-bolder {titleColor} ">{title}!</p>
@@ -43,7 +45,7 @@
       <!-- <div class="btn btn-primary me-2" type="">{buttonText}</div> -->
 
       <div
-        class="btn btn-secondary"
+        class="btn {buttonColor}"
         type=""
         on:click={() => {
           display = false;
@@ -61,9 +63,7 @@
 
 <style>
   .body {
-    background-color: #e4e4e42a;
-    color: #1414149a;
-    backdrop-filter: blur(0.1rem);
+    backdrop-filter: blur(0.2rem);
   }
 
   .top-20 {

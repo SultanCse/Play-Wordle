@@ -1,4 +1,5 @@
 <script>
+	import Rules from './Rules.svelte';
 	import Toggle from './../elements/Toggle.svelte';
 	import WordleModal from './../elements/WordleModal.svelte';
 	import Wordle from './Wordle.svelte';
@@ -142,6 +143,7 @@
     modalName = "settings";
     title="Settings";
     subtitle="Chaneg the theme";
+    console.log(modalName);
   }
 
   const gameRules = ()=>{
@@ -149,6 +151,7 @@
     modalName = "rules";
     title="Rules";
     subtitle="Rules of the game";
+    console.log(modalName);
   }
 
 
@@ -280,7 +283,7 @@
       </div>
     </div>
   </div>
-  {#if openModal}
+  {#if openModal && !modalName}
     <WordleModal
       bind:openModal
       bind:title
@@ -309,7 +312,9 @@
     </WordleModal>
   {/if}
   {#if openModal && modalName == 'rules'}
-    <WordleModal bind:openModal bind:title bind:subtitle bind:modalName />
+    <WordleModal bind:openModal bind:title bind:subtitle bind:modalName>
+      <Rules />
+    </WordleModal>
   {/if}
 </div>
 
@@ -319,6 +324,10 @@
     --positionCorrect: #538d4c;
     --notIncluded: #616163;
     --dark-BackGround: #111111;
+    --dark-keypad: #2d2d2d;
+    --light-keypad: #f5f5f5;
+    --dark-border: #;
+    --light-border: #;
     --light-BackGround: #78a6ea;
   }
   .h-2 {
