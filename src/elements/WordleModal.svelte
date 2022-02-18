@@ -12,7 +12,6 @@
   export let openModal = false;
   const modalHandeller = (event)=>{
     event.key === 'Enter' ? openModal=!openModal:'';
-    console.log(event.key, openModal);
   }
 </script>
 
