@@ -30,7 +30,7 @@
   }}
 >
   <div
-    class="w-50 {backgroundColor} rounded position-absolute start-25 top-20 "
+    class="w-50 mh-75 overflow-auto {backgroundColor} rounded position-absolute start-25 top-15 "
   >
     <!-- Modal header -->
     <p class="text-center fs-1 m-0 fw-bolder {titleColor} ">{title}!</p>
@@ -66,13 +66,15 @@
     backdrop-filter: blur(0.2rem);
   }
 
-  .top-20 {
-    top: 20%;
+  .top-15 {
+    top: 15%;
   }
   .start-25 {
     left: 25%;
   }
-
+  .mh-75 {
+    max-height: 75%;
+  }
   @media (max-width: 1000px) {
     .w-50 {
       width: 80% !important;
