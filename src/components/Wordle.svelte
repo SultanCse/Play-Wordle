@@ -16,18 +16,6 @@
   let nextCount = 5;
   let lightTheme = false;
   let modalName = "";
-  const reset = () => {
-      word = '';
-      nextCount = 5;
-      colors = [];
-      keyColors = [];
-      firstRowColors = [];
-      secondRowColors = [];
-      thirdRowColors = [];
-      index = Math.floor(Math.random() * possibilities.length);
-      rightWord = possibilities[index].toUpperCase();
-      console.log(rightWord);
-  }
   const keyboardHandeler = (event)=>{
     if(word.length<nextCount && word.length<30 && event.keyCode>=65 && event.keyCode<=90 && !word.includes(rightWord)){
       word = word + event.key.toUpperCase()
@@ -128,7 +116,6 @@
     rowColorFilter(firstRowColors);
     rowColorFilter(secondRowColors);
     rowColorFilter(thirdRowColors);
-    console.log('firstRowColors:', firstRowColors, 'secondRowColors:', secondRowColors, 'thirdRowColors:', thirdRowColors);
   }
   const colorReturn = (item,row)=>{
     for(let i =0; i<row.length; i++){
@@ -140,17 +127,16 @@
   const themeToggle = ()=>{
     openModal = true;
     modalName = "settings";
-    title="Settings";
-    subtitle="Chaneg the theme";
-    console.log(modalName);
+    title="";
+    subtitle="Switch Mood";
   }
 
   const gameRules = ()=>{
     openModal = true;
     modalName = "rules";
-    title="Rules";
-    subtitle="Rules of the game";
-    console.log(modalName);
+    title="";
+    subtitle="How to Play?";
+
   }
 
 
